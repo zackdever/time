@@ -21,6 +21,10 @@ Built for [Promt](http://promtapp.com).
     var time = require('time');
     time('2');
 
+Examples
+--------
+Some example uses with input boxes can be viewed in examples.html.
+
 Parses strings such as "8:20" into a Date-less Time.
 
     new Time('1')    // 1:00

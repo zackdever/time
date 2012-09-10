@@ -3,18 +3,33 @@
   <head><title>time example</title></head>
   <body>
     <p>
-      <input autofocus> = <span id="result"></span>
+      instant: <input autofocus> <span></span>
+      <br />
+      validation: <input> <button disabled>submit</button> <span></span>
     </p>
     <script src="time.js"></script>
     <script>
       window.onload = function() {
-        var result = document.getElementById('result')
-          , text = document.getElementsByTagName('input')[0];
+        var results = document.getElementsByTagName('span')
+          , inputs = document.getElementsByTagName('input')
+          , instant = inputs[0]
+          , validation = inputs[1]
+          , instantResult = results[0]
+          , validationResult = results[1]
+          , validationSubmit = document.getElementsByTagName('button')[0];
 
-        result.innerText = Time().toString();
+        instantResult.innerText = Time().toString();
 
-        text.onkeyup = function() {
-        result.innerText = Time(text.value);
+        instant.onkeyup = function() {
+          instantResult.innerText = Time(instant.value);
+        };
+
+        validationSubmit.onclick = function() {
+          validationResult.innerText = Time(validation.value);
+        };
+
+        validation.onkeyup = function() {
+          validationSubmit.disabled = !Time.isValid(validation.value);
         };
       };
     </script>
