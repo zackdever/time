@@ -1,6 +1,6 @@
 (function() {
-  var root = (typeof exports == 'undefined' ? window : exports);
-  root.Time = Time;
+  if (typeof module !== 'undefined' && module.exports) module.exports = Time;
+  else window.Time = Time;
 
   Time.re = /^(10|11|12|[1-9])(?::|\.)?([0-5][0-9])?$/;
 

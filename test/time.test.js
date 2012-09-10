@@ -1,4 +1,4 @@
-time = require('../time').Time;
+time = require('../time');
 
 var hours=[], minutes=[], periods=[];
 

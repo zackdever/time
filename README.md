@@ -5,6 +5,18 @@ with the option to convert to the next immediate corresponding Date.
 
 Built for [Promt](http://promtapp.com).
 
+*Node*
+
+    var time = require('time');
+    time('2');
+
+*Browser*
+
+    <script src="time.js"></script>
+    <script>
+      Time('2');
+    </script>
+
 Parses strings such as "8:20" into a Date-less Time.
 
     new Time('1')    // 1:00
