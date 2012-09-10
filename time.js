@@ -47,6 +47,7 @@
   }
 
   Time.prototype.toString = function() {
+    if (this.hours == undefined || this.minutes == undefined) return 'invalid';
     var minutes = this.minutes < 10 ? '0' + this.minutes : this.minutes;
     return this.hours + ':' + minutes;
   }

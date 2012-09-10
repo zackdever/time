@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head><title>time example</title></head>
+  <body>
+    <p>
+      <input autofocus> = <span id="result"></span>
+    </p>
+    <script src="time.js"></script>
+    <script>
+      window.onload = function() {
+        var result = document.getElementById('result')
+          , text = document.getElementsByTagName('input')[0];
+
+        result.innerText = Time().toString();
+
+        text.onkeyup = function() {
+        result.innerText = Time(text.value);
+        };
+      };
+    </script>
+  </body>
+</html>
