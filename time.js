@@ -8,7 +8,7 @@
     if (!(this instanceof Time)) return new Time(time);
 
     if (time) {
-      time.replace(' ', '');
+      time = time.toString().replace(/\s/g, '');
       var result = Time.re.exec(time);
       if (result) {
         this.hours = parseInt(result[1]);
@@ -28,8 +28,10 @@
 
     var hours = this.hours === 12 ? 0 : this.hours; // uniformly handle am/pm adjustments
     var d = new Date();
-    d.setMinutes(this.minutes);
     d.setHours(hours);
+    d.setMinutes(this.minutes);
+    d.setSeconds(0);
+    d.setMilliseconds(0);
 
     // if it has already passed, add 12 hours at a time until it's in the future
     while (new Date() > d) d.setHours(d.getHours() + 12);

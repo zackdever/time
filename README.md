@@ -5,17 +5,21 @@ with the option to convert to the next immediate corresponding Date.
 
 Built for [Promt](http://promtapp.com).
 
-*Node*
-
-    var time = require('time');
-    time('2');
-
 *Browser*
 
     <script src="time.js"></script>
     <script>
-      Time('2');
+      var t = Time('2');
+      t.hours      // 2
+      t.minutes    // 0
+      t.toString() // '2:00'
+      t.nextDate() // Sep 10 2:00 (assuming it is 1 o'clock Sep 10)
     </script>
+
+*Node*
+
+    var time = require('time');
+    time('2');
 
 Parses strings such as "8:20" into a Date-less Time.
 
@@ -42,10 +46,13 @@ Does validation statically...
 
 ... or after contruction.
 
-    Time('1').isValid()       // true
-    Time('12.0').isValid()    // false
-    Time('12:202').isValid()  // false
+    Time('1').isValid()      // true
+    Time('12.0').isValid()   // false
+    Time('12:202').isValid() // false
 
+Accepts numbers too.
+
+    Time(1).isValid() // true
 
 Periods (am/pm) and military time are not supported, but probably will be.
 
