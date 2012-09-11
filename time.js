@@ -1,11 +1,15 @@
 (function() {
 
+  // TODO support military time
+  // TODO make military time optional
+  // TODO make british delineation optional
+
   // play nice with both node.js and browser
   if (typeof module !== 'undefined' && module.exports) module.exports = Time;
   else window.Time = Time;
 
-  // what you might expect to be a valid time e.g. 2, 2:00, 12:18, 4.23
-  Time.re = /^(10|11|12|[1-9])(?::|\.)?([0-5][0-9])?$/;
+  // what you might expect to be a valid time e.g. 2, 2:00a, 12:18, 4.23 p.m.
+  Time.re = /^(10|11|12|[1-9])(?::|\.)?([0-5][0-9])?(a|p.?(m.?)?)?$/;
 
   /*
    * Time constructor works with(out) 'new'
@@ -35,6 +39,7 @@
 
   /*
    * Find the next immediate corresponding Date.
+   *
    * Assume it's 3:15 pm Aug 10:
    * Time('3:15').nextDate() // 3:15 pm Aug 10
    * Time('415').nextDate()  // 4:15 pm Aug 10

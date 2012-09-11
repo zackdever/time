@@ -38,7 +38,6 @@ If you fancy it, you can use safely drop the 'new'.
 Converts Time into the next corresponding JavaScript Date.
 
     // assume it's 3:15 pm Aug 10
-    Time('3:15').nextDate() // 3:15 pm Aug 10
     Time('415').nextDate()  // 4:15 pm Aug 10
     Time('2').nextDate()    // 2:00 am Aug 11
 
