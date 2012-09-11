@@ -3,9 +3,11 @@ time
 Parses time input with no relation to dates,
 with the option to convert to the next immediate corresponding Date.
 
-Built for [Promt](http://promtapp.com).
+Under active development, including breaking changes.
 
-*Browser*
+Built for [Promt](http://promtapp.com). 
+
+**Browser**
 
     <script src="time.js"></script>
     <script>
@@ -16,10 +18,11 @@ Built for [Promt](http://promtapp.com).
       t.nextDate() // Sep 10 2:00 (assuming it is 1 o'clock Sep 10)
     </script>
 
-*Node*
+**Node**
 
     var time = require('time');
     time('2');
+    // you get the idea, or see below for more ideas
 
 Examples
 --------
@@ -38,7 +41,6 @@ If you fancy it, you can use safely drop the 'new'.
 Converts Time into the next corresponding JavaScript Date.
 
     // assume it's 3:15 pm Aug 10
-    Time('3:15').nextDate() // 3:15 pm Aug 10
     Time('415').nextDate()  // 4:15 pm Aug 10
     Time('2').nextDate()    // 2:00 am Aug 11
 
@@ -58,7 +60,7 @@ Accepts numbers too.
 
     Time(1).isValid() // true
 
-Periods (am/pm) and military time are not supported, but probably will be.
+Periods (am/pm) and military time are not supported, but probably will be soon.
 
 Test
 ----
