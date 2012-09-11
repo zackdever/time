@@ -1,36 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head><title>time example</title></head>
-  <body>
-    <p>
-      instant: <input autofocus> <span></span>
-      <br />
-      validation: <input> <button disabled>submit</button> <span></span>
-    </p>
+  <head>
+    <title>time example</title>
     <script src="time.js"></script>
+  </head>
+  <body>
+
+    <!-- instant example -->
+    <p id='instant'>
+      instant: <input autofocus>
+      <span></span>
+      <script>
+        var instant = function() {
+          var root = document.getElementById('instant')
+            , input = root.getElementsByTagName('input')[0]
+            , result = root.getElementsByTagName('span')[0];
+
+          result.innerText = Time().toString();
+
+          input.onkeyup = function() {
+            result.innerText = Time(input.value);
+          };
+        };
+      </script>
+    </p>
+
+    <!-- validation example -->
+    <p id='validation'>
+      validation: <input> <button disabled>submit</button>
+      <span></span>
+      <script>
+        var validation = function() {
+          var root = document.getElementById('validation')
+            , input = root.getElementsByTagName('input')[0]
+            , result = root.getElementsByTagName('span')[0]
+            , submit = root.getElementsByTagName('button')[0];
+
+          submit.onclick = function() {
+            result.innerText = Time(input.value);
+          };
+
+          input.onkeyup = function() {
+            submit.disabled = !Time.isValid(input.value);
+          };
+        };
+      </script>
+    </p>
+
     <script>
       window.onload = function() {
-        var results = document.getElementsByTagName('span')
-          , inputs = document.getElementsByTagName('input')
-          , instant = inputs[0]
-          , validation = inputs[1]
-          , instantResult = results[0]
-          , validationResult = results[1]
-          , validationSubmit = document.getElementsByTagName('button')[0];
-
-        instantResult.innerText = Time().toString();
-
-        instant.onkeyup = function() {
-          instantResult.innerText = Time(instant.value);
-        };
-
-        validationSubmit.onclick = function() {
-          validationResult.innerText = Time(validation.value);
-        };
-
-        validation.onkeyup = function() {
-          validationSubmit.disabled = !Time.isValid(validation.value);
-        };
+        instant();
+        validation();
       };
     </script>
   </body>
