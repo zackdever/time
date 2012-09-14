@@ -23,7 +23,7 @@ Built for [Promt](http://promtapp.com).
 
 Examples
 --------
-Some example uses with input boxes can be viewed in examples.html.
+Some example uses can be viewed in examples.html.
 
 Parses strings such as "8:20" into a Date-less Time.
 
@@ -35,11 +35,18 @@ If you fancy it, you can use safely drop the 'new'.
     Time('1.23') // 1:23
     Time('123')  // 1:23
 
+am/pm can optionally be specified.
+
+    Time('8:30 pm') // 8:30 pm
+    Time('3p')      // 3:00 pm
+    Time('3 A.M.')  // 3:00 am
+
 Converts Time into the next corresponding JavaScript Date.
 
     // assume it's 3:15 pm Aug 10
     Time('415').nextDate()  // 4:15 pm Aug 10
     Time('2').nextDate()    // 2:00 am Aug 11
+    Time('2 pm').nextDate() // 2:00 pm Aug 11
 
 Does validation statically...
 
@@ -57,7 +64,7 @@ Accepts numbers too.
 
     Time(1).isValid() // true
 
-Periods (am/pm) and military time are not supported, but probably will be.
+*Military time is not supported, but may be in the future (or not).*
 
 Test
 ----
