@@ -3,13 +3,15 @@
   // TODO support military time
   // TODO make military time optional
   // TODO make british delineation optional
+  var am = 'am'
+    , pm = 'pm';
 
   // play nice with both node.js and browser
   if (typeof module !== 'undefined' && module.exports) module.exports = Time;
   else window.Time = Time;
 
   // what you might expect to be a valid time e.g. 2, 2:00a, 12:18, 4.23 p.m.
-  Time.re = /^(10|11|12|[1-9])(?::|\.)?([0-5][0-9])?(a|p.?(m.?)?)?$/;
+  Time.re = /^(10|11|12|[1-9])(?::|\.)?([0-5][0-9])?([ap].?(m.?)?)?$/;
 
   /*
    * Time constructor works with(out) 'new'
@@ -27,6 +29,7 @@
       if (result) {
         this.hours = parseInt(result[1]);
         this.minutes = result[2] ? parseInt(result[2]) : 0;
+        this.period = parsePeriod(result[3]);
       }
     } else {
       // set to current time
@@ -34,6 +37,7 @@
         , hours = d.getHours();
       this.hours = hours > 11 ? hours - 12 : hours;
       this.minutes = d.getMinutes();
+      this.period = hours > 11 ? pm : am;
     }
   }
 
@@ -49,6 +53,7 @@
     if (!this.isValid()) return null;
 
     var hours = this.hours === 12 ? 0 : this.hours; // uniformly handle am/pm adjustments
+    if (this.period === pm) hours += 12;
     var d = new Date();
     d.setHours(hours);
     d.setMinutes(this.minutes);
@@ -57,6 +62,11 @@
 
     // if it has already passed, add 12 hours at a time until it's in the future
     while (new Date() > d) d.setHours(d.getHours() + 12);
+
+    // make sure we're in the correct period
+    if (d.getHours() > 11 && this.period === am) d.setHours(d.getHours() + 12)
+    else if (d.getHours() < 12 && this.period === pm) d.setHours(d.getHours() + 12)
+
     return d;
   }
 
@@ -83,17 +93,24 @@
    * @retun hh:mm e.g. 3:00, 12:23, undefined:undefined
    */
   function toString(time) {
-    var minutes = time.minutes < 10 ? '0' + time.minutes : time.minutes;
-    return time.hours + ':' + minutes;
+    var minutes = time.minutes < 10 ? '0' + time.minutes : time.minutes
+      , result = time.hours + ':' + minutes;
+
+    return (time.period == undefined) ? result : result + ' ' + time.period;
   }
 
   /*
-   * (private) Force @time to a string and remove all whitespace
+   * (private) Force @time to a string and remove all whitespace.
    *
    * @time input
    * @retun input as a string, with all white space removed
    */
   function sanitize(time) {
     return time.toString().replace(/\s/g, '');
+  }
+
+  function parsePeriod(period) {
+    if (!period) return null;
+    return (period.match(/^p/i) == null) ? am : pm;
   }
 })();

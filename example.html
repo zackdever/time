@@ -47,10 +47,33 @@
       </script>
     </p>
 
+    <!-- nextDate example -->
+    <p id='nextdate'>
+      next date: <input> <button disabled>next date</button>
+      <span></span>
+      <script>
+        var nextDate = function() {
+          var root = document.getElementById('nextdate')
+            , input = root.getElementsByTagName('input')[0]
+            , result = root.getElementsByTagName('span')[0]
+            , submit = root.getElementsByTagName('button')[0];
+
+          submit.onclick = function() {
+            result.innerText = Time(input.value).nextDate();
+          };
+
+          input.onkeyup = function() {
+            submit.disabled = !Time.isValid(input.value);
+          };
+        };
+      </script>
+    </p>
+
     <script>
       window.onload = function() {
         instant();
         validation();
+        nextDate();
       };
     </script>
   </body>
