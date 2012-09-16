@@ -1,8 +1,5 @@
 (function() {
 
-  // TODO support military time
-  // TODO make military time optional
-  // TODO make british delineation optional
   var am = 'am'
     , pm = 'pm';
 
@@ -11,7 +8,7 @@
   else window.Time = Time;
 
   // what you might expect to be a valid time e.g. 2, 2:00a, 12:18, 4.23 p.m.
-  Time.re = /^(10|11|12|[1-9])(?::|\.)?([0-5][0-9])?([ap].?(m.?)?)?$/;
+  Time.re = /^(10|11|12|[1-9])(?::|\.)?([0-5][0-9])?([ap]\.?(m\.?)?)?$/;
 
   /*
    * Time constructor works with(out) 'new'

@@ -41,6 +41,15 @@ describe('Time', function() {
       }
     });
 
+    it('should fail with bogus am/pm values', function() {
+      time('8ap').isValid().should.not.be.ok;
+      time('ap').isValid().should.not.be.ok;
+      time('a').isValid().should.not.be.ok;
+      time('am').isValid().should.not.be.ok;
+      time('a.m.').isValid().should.not.be.ok;
+      time('2 ama').isValid().should.not.be.ok;
+    });
+
     it('should pass all the hours with all the minutes 1:00 - 12:59', function() {
       var hour, minute, result, input;
       for (var i = 0; i < hours.length; i++) {
