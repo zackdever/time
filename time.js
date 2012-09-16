@@ -35,7 +35,8 @@
       // set to current time
       var d = new Date()
         , hours = d.getHours();
-      this.hours = hours > 11 ? hours - 12 : hours;
+      this.hours = hours > 12 ? hours - 12 : hours;
+      if (this.hours === 0) this.hours = 12;
       this.minutes = d.getMinutes();
       this.period = hours > 11 ? pm : am;
     }
