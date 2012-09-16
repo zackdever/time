@@ -58,7 +58,7 @@ Does validation statically...
     Time.isValid('12:60') // false
     Time.isValid('13:23') // false
 
-... or after contruction.
+... or after construction.
 
     Time('1').isValid()      // true
     Time('12.0').isValid()   // false
