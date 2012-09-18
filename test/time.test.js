@@ -5,6 +5,19 @@ var hours=[], minutes=[], periods=[];
 for (var i = 1; i < 13; i++) hours.push(i.toString());
 for (var i = 0; i < 60; i++) minutes.push(('0' + i).slice(-2));
 
+var seed = ['pm', 'p', 'p.m.', 'pm.', 'p.m'];
+for (var i=0; i<seed.length; i++) {
+  var s = seed[i];
+  periods.push(s);
+  periods.push(s.toUpperCase());
+  periods.push(s.replace('m', 'M'));
+  periods.push(s.replace('p', 'P'));
+  periods.push(s.replace('p', 'a'));
+  periods.push(s.toUpperCase());
+  periods.push(s.toUpperCase().replace('M', 'm'));
+  periods.push(s.replace('a', 'A'));
+}
+
 describe('Time', function() {
   describe('constructor', function() {
     it('should work without using `new`', function() {
@@ -60,6 +73,25 @@ describe('Time', function() {
           time.isValid(input).should.be.ok;
         }
       };
+    });
+
+    it('should pass with lower and upper case period', function() {
+      time('8 PM').isValid().should.be.ok;
+      time('8:20PM').isValid().should.be.ok;
+      time('8:20pM').isValid().should.be.ok;
+      time('8:20 pm').isValid().should.be.ok;
+      time('8:20 p.m.').isValid().should.be.ok;
+
+      for (var i = 0; i < periods.lengh; i++) {
+        time('1:23 ' + period[i]).isValid().should.be.ok;
+        time.isValid('1:23 ' + period[i]).should.be.ok;
+      }
+    });
+
+    it('should fail if just given a period with no time', function() {
+      time('PM').isValid().should.not.be.ok;
+      time('a.m.').isValid().should.not.be.ok;
+      time.isValid(' a.m.').should.not.be.ok;
     });
   });
 
