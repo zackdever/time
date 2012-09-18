@@ -11,24 +11,24 @@ describe('Time', function() {
       var t = time();
       t.nextDate().should.be.ok;
       t = time(3);
-      t.hours.should.equal(3);
-      t.minutes.should.equal(0);
+      t.hours().should.equal(3);
+      t.minutes().should.equal(0);
     });
 
     it('should work using `new`', function() {
       var t = new time();
       t.nextDate().should.be.ok;
       t = time(3);
-      t.hours.should.equal(3);
-      t.minutes.should.equal(0);
+      t.hours().should.equal(3);
+      t.minutes().should.equal(0);
     });
 
     it('should be the same with or without `new`', function() {
       var newT = new time('314')
         , t = time('314');
       t.nextDate().should.equal(newT.nextDate());
-      t.hours.should.equal(newT.hours);
-      t.minutes.should.equal(newT.minutes);
+      t.hours().should.equal(newT.hours());
+      t.minutes().should.equal(newT.minutes());
     });
   });
 
@@ -70,8 +70,8 @@ describe('Time', function() {
         hour = hours[i];
         result = time(hour);
         result.isValid().should.be.ok;
-        result.hours.should.equal(parseInt(hour));
-        result.minutes.should.equal(0);
+        result.hours().should.equal(parseInt(hour));
+        result.minutes().should.equal(0);
       }
     });
 
@@ -96,8 +96,8 @@ describe('Time', function() {
           input = hour + ':' + minute;
           result = time(input);
           result.isValid().should.be.ok;
-          result.hours.should.equal(parseInt(hour));
-          result.minutes.should.equal(parseInt(minute));
+          result.hours().should.equal(parseInt(hour));
+          result.minutes().should.equal(parseInt(minute));
         }
       }
     });
@@ -110,8 +110,8 @@ describe('Time', function() {
           minute = minutes[j];
           result = time(hour + minute);
           result.isValid().should.be.ok;
-          result.hours.should.equal(parseInt(hour));
-          result.minutes.should.equal(parseInt(minute));
+          result.hours().should.equal(parseInt(hour));
+          result.minutes().should.equal(parseInt(minute));
         }
       }
     });

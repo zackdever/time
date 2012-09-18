@@ -13,8 +13,8 @@ Built for [Promt](http://promtapp.com), to solve [this problem](http://stackover
     <script src="time.js"></script>
     <script>
       var t = Time('2');
-      t.hours      // 2
-      t.minutes    // 0
+      t.hours()    // 2
+      t.minutes()  // 0
       t.toString() // '2:00'
       t.nextDate() // Sep 10 2:00 (assuming it is 1 o'clock Sep 10)
     </script>
