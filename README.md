@@ -4,9 +4,9 @@ time.js
 Parses time input with no relation to dates,
 with the option to convert to the next immediate corresponding Date.
 
-*Under active development, including breaking changes.*
-
 Built for [Promt](http://promtapp.com), to solve [this problem](http://stackoverflow.com/q/141348/962091).
+
+*Under active development, which may include breaking changes.*
 
 **Browser**
 
@@ -20,6 +20,9 @@ Built for [Promt](http://promtapp.com), to solve [this problem](http://stackover
     </script>
 
 **Node**
+
+    npm install time-js
+
 
     var time = require('time');
     time('2');
