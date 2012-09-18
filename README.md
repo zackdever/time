@@ -23,6 +23,7 @@ t.nextDate(); // Sep 10 2:00 (assuming it is 1 o'clock Sep 10)
 ```
 
 **Node**
+
 ```
 $ npm install time-js
 ```
