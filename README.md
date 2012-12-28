@@ -6,8 +6,6 @@ with the option to convert to the next immediate corresponding Date.
 
 Built for [Promt](http://promtapp.com), to solve [this problem](http://stackoverflow.com/q/141348/962091).
 
-*Under active development, which may include breaking changes.*
-
 **Browser**
 
 ```html
