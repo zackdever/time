@@ -7,9 +7,12 @@ with the option to convert to the next immediate corresponding Date.
 Built for [Promt](http://promtapp.com), to solve [this problem](http://stackoverflow.com/q/141348/962091).
 
 **Browser**
-
+ 
+```
+$ bower install time-js # or just manually download time.js
+```
 ```html
-<script src="time.js"></script>
+<script src="component/time-js/time.js"></script>
 ```
 ```js
 var t = Time('2p');
