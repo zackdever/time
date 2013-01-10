@@ -1,0 +1,22 @@
+{
+  "name": "time",
+  "repo": "zever/time",
+  "description": "date-agnostic time parsing",
+  "version": "0.0.1",
+  "keywords": [
+    "time",
+    "parse",
+    "parsing",
+    "format",
+    "validate"
+  ],
+  "dependencies": {},
+  "development": {
+    "mocha": "1.4.1",
+    "should": "1.1.0"
+  },
+  "main": "time.js",
+  "scripts": [
+    "time.js"
+  ]
+}
