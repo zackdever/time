@@ -99,11 +99,6 @@
   };
 
   /*
-   * Alias for `format`.
-   */
-  Time.prototype.toString = Time.prototype.format;
-
-  /*
    * This can be safely changed if so desired.
    */
   Time.DEFAULT_TIME_FORMAT = 'h:mm am';
@@ -132,13 +127,19 @@
    * h.mm       1.55
    */
   Time.prototype.format = function(format) {
+    format = format || Time.DEFAULT_TIME_FORMAT;
     if (!this.isValid()) {
       return 'invalid time';
-    } else if (!timeRegex.test(format)) {
+    } else if (!formatRegex.test(format)) {
       return 'invalid format';
     }
     return toString(this, format);
   };
+
+  /*
+   * Alias for `format`.
+   */
+  Time.prototype.toString = Time.prototype.format;
 
   /*
    * (private) Format Time in the given format.
@@ -147,7 +148,8 @@
    * @retun hh:mm e.g. 3:00, 12:23, undefined:undefined
    */
   function toString(time, format) {
-    var bits = formatRegex.exec(format || Time.DEFAULT_TIME_FORMAT);
+    format = format || Time.DEFAULT_TIME_FORMAT;
+    var bits = formatRegex.exec(format);
     var fHour = bits[1];
     var fMiddlebit = bits[2];
     var fMinutes = bits[3];
@@ -165,10 +167,10 @@
     // only show middlebit if we have minutes
     var middlebit = minutes ? fMiddlebit : '';
 
-    // always show period if available
-    var period = (time.period() == undefined) ? '' : time.period();
-    if (period) {
-      var firstPeriod = period.charAt(0);
+    // only show period if available and requested
+    var period = '';
+    if (fPeriod && time.period()) {
+      var firstPeriod = time.period().charAt(0);
       if (fPeriod.charAt(0) === fPeriod.charAt(0).toUpperCase()) {
         firstPeriod = firstPeriod.toUpperCase();
       }
@@ -178,12 +180,13 @@
     // only show space if it was requested by format and there's a period
     var space = (period && fPeriodSpace) ? fPeriodSpace : '';
 
-    return '' + hours + middlebit + minutes + period;
+    return '' + hours + middlebit + minutes + space + period;
   }
 
   function padTime(time) {
     return time < 10 ? '0' + time : time;
   }
+
   /*
    * (private) Force @time to a string and remove all whitespace.
    *
