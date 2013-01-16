@@ -16,11 +16,14 @@ $ bower install time-js # or just manually download time.js
 ```
 ```js
 var t = Time('2p');
-t.hours();    // 2
-t.minutes();  // 0
-t.period();   // 'pm'
-t.toString(); // '2:00 pm'
-t.nextDate(); // Sep 10 2:00 (assuming it is 1 o'clock Sep 10)
+t.hours();             // 2
+t.minutes();           // 0
+t.period();            // 'pm'
+t.toString();          // '2:00 pm'
+t.nextDate();          // Sep 10 2:00 (assuming it is 1 o'clock Sep 10)
+t.format('hh:mm AM')   // '02:00 PM'
+t.isValid();           // true
+Time.isValid('99:12'); // false
 ```
 
 **Node**
@@ -83,6 +86,15 @@ Time.isValid('13:23') // false
 Time('1').isValid()      // true
 Time('12.0').isValid()   // false
 Time('12:202').isValid() // false
+```
+
+There's basic formatting
+
+```js
+Time('2:30p').format('hh:mm A'); // '02:30 P'
+Time('12 am').format('h: p');    // '12 a'
+Time('220 a').format('h: p');    // '2:20 a'
+Time('7').format('h: p');        // '7'
 ```
 
 Accepts numbers too.
