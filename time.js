@@ -3,7 +3,7 @@
   var AM = 'am'
     , PM = 'pm'
     , periodRegex = new RegExp('([ap](\\.?)(m\\.?)?)', 'i')
-    , timeRegex = new RegExp('^(10|11|12|[1-9])(?::|\\.)?([0-5][0-9])?'
+    , timeRegex = new RegExp('^(10|11|12|0?[1-9])(?::|\\.)?([0-5][0-9])?'
                              + periodRegex.source + '?$', 'i')
     , formatRegex = new RegExp('^(h|hh)([:|\.])?(mm)?( ?)'
                                + periodRegex.source + '?$', 'i');
@@ -161,13 +161,14 @@
     // always show hour
     var hours = fHour.length == 2 ? padTime(time.hours()) : time.hours();
 
-    // only hide minutes if they aren't in the format, and not 0
-    var minutes = (fMinutes || time.minutes()) ? padTime(time.minutes()) : '';
+    // show if in the format or if non-zero and middlebit is provided
+    var minutes = (fMinutes || (fMiddlebit && time.minutes() !== 0)) ?
+                    padTime(time.minutes()) : '';
 
-    // only show middlebit if we have minutes
-    var middlebit = minutes ? fMiddlebit : '';
+    // show middlebit if we have minutes
+    var middlebit = (minutes && fMiddlebit) ? fMiddlebit : '';
 
-    // only show period if available and requested
+    // show period if available and requested
     var period = '';
     if (fPeriod && time.period()) {
       var firstPeriod = time.period().charAt(0);
