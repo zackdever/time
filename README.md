@@ -32,7 +32,7 @@ Time.isValid('99:12'); // false
 $ npm install time-js
 ```
 ```js
-var time = require('time');
+var time = require('time-js');
 time('2');
 // you get the idea, or see below for more ideas
 ```
