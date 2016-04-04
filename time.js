@@ -28,8 +28,8 @@
     if (time) {
       var result = timeRegex.exec(sanitize(time));
       if (result) {
-        hours = parseInt(result[1]);
-        minutes = result[2] ? parseInt(result[2]) : 0;
+        hours = parseInt(result[1], 10);
+        minutes = result[2] ? parseInt(result[2], 10) : 0;
         period = parsePeriod(result[3]);
       }
     } else {
@@ -45,13 +45,13 @@
     // gets or sets hours
     this.hours = function(newHours) {
       if (!newHours) return hours;
-      hours = parseInt(newHours);
+      hours = parseInt(newHours, 10);
     };
 
     // gets or sets minutes
     this.minutes = function(newMinutes) {
       if (!newMinutes) return minutes;
-      minutes = parseInt(newMinutes);
+      minutes = parseInt(newMinutes, 10);
     };
 
     // gets or sets period
