@@ -1,6 +1,6 @@
 {
   "name": "time-js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Zack Dever <zackdever@gmail.com>",
   "description": "date-agnostic time parsing for node and the browser",
   "main": "time.js",
@@ -15,10 +15,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zever/time.git"
+    "url": "https://github.com/zackdever/time.git"
   },
   "bugs": {
-    "url": "https://github.com/zever/time/issues"
+    "url": "https://github.com/zackdever/time/issues"
   },
   "devDependencies": {
     "mocha": "1.4.1",
